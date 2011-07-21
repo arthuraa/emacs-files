@@ -5,9 +5,10 @@
   (mapc 'add-path (file-expand-wildcards "~/.emacs.d/site-lisp/*")))
 
 (require 'util)
-(require 'package-autoloads)
 (require 'package)
+(package-initialize)
 (require 'color-theme)
+(require 'package-autoloads)
 
 (mapc 'load (file-expand-wildcards "~/.emacs.d/custom/*"))
 
