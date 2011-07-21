@@ -6,11 +6,8 @@
 
 (require 'util)
 (require 'package-autoloads)
-
-(when
-    (load
-     (expand-file-name "~/.emacs.d/elpa/package.el"))
-  (package-initialize))
+(require 'package)
+(require 'color-theme)
 
 (mapc 'load (file-expand-wildcards "~/.emacs.d/custom/*"))
 
