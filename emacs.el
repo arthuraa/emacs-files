@@ -1,14 +1,18 @@
-(require 'cl)
+(let ((start-time (float-time)))
 
-(labels ((add-path (path) (add-to-list 'load-path path)))
-  (add-path (expand-file-name "~/.emacs.d"))
-  (mapc 'add-path (file-expand-wildcards "~/.emacs.d/site-lisp/*")))
+  (require 'cl)
 
-(require 'util)
-(require 'package)
-(package-initialize)
-(require 'package-autoloads)
+  (labels ((add-path (path) (add-to-list 'load-path path)))
+    (add-path (expand-file-name "~/.emacs.d"))
+    (mapc 'add-path (file-expand-wildcards "~/.emacs.d/site-lisp/*")))
 
-(mapc 'load (file-expand-wildcards "~/.emacs.d/custom/*"))
+  (require 'util)
+  (require 'package)
+  (package-initialize)
+  (require 'package-autoloads)
 
-(server-start)
+  (mapc 'load (file-expand-wildcards "~/.emacs.d/custom/*"))
+
+  (server-start)
+
+  (message (format "Startup time: %fs" (- (float-time) start-time))))
