@@ -18,19 +18,7 @@
 (setq search-highlight t)
 (global-font-lock-mode t)
 
-(custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(case-fold-search t)
- '(coq-prog-name "/home/arthur/src/ssreflect-1.2/bin/ssrcoq")
- '(current-language-environment "UTF-8")
- '(default-input-method "rfc1345")
- '(js2-auto-indent-flag nil)
- '(js2-enter-indents-newline nil)
- '(js2-mirror-mode nil)
- '(js2-mode-escape-quotes nil))
+(setq case-fold-search t)
 
 ;; ========== Place Backup Files in Specific Directory ==========
 
