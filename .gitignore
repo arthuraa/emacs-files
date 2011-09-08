@@ -1,7 +1,6 @@
 package-autoloads.el
 *.elc
-site-lisp
 tramp
 auto-save-list
-elpa
 image-dired
+elpa/archives
