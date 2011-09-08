@@ -9,7 +9,13 @@
   (require 'util)
   (require 'package)
   (package-initialize)
-  (require 'package-autoloads)
+
+  (condition-case ex
+      (require 'package-autoloads)
+    ('error
+     (util-compile-packages)
+     (util-generate-package-autoloads)
+     (require 'package-autoloads)))
 
   (mapc 'load (file-expand-wildcards "~/.emacs.d/custom/*"))
 
