@@ -17,7 +17,7 @@
      (util-generate-package-autoloads)
      (require 'package-autoloads)))
 
-  (mapc 'load (file-expand-wildcards "~/.emacs.d/custom/*"))
+  (mapc 'load (file-expand-wildcards "~/.emacs.d/custom/*.el"))
 
   (server-start)
 
