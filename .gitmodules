@@ -1,3 +1,6 @@
 [submodule "site-lisp/matlab-emacs"]
 	path = site-lisp/matlab-emacs
 	url = https://github.com/ruediger/matlab-emacs.git
+[submodule "site-lisp/tuareg-mode"]
+	path = site-lisp/tuareg-mode
+	url = https://github.com/hayamiz/tuareg-mode
