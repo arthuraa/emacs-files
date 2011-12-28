@@ -4,3 +4,6 @@
 [submodule "site-lisp/gimme"]
 	path = site-lisp/gimme
 	url = git@github.com:arthuraa/GIMME.git
+[submodule "site-lisp/tuareg-mode"]
+	path = site-lisp/tuareg-mode
+	url = https://github.com/hayamiz/tuareg-mode

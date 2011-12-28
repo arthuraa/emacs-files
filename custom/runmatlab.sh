@@ -2,4 +2,4 @@
 
 #ssh aarthur@biglab matlab -nodisplay
 
-matlab -nodisplay -nojvm
+matlab -nodisplay
