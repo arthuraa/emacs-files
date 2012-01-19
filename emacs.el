@@ -19,6 +19,8 @@
 
   (mapc 'load (file-expand-wildcards "~/.emacs.d/custom/*.el"))
 
+  (load "~/.emacs.d/site-lisp/ProofGeneral/generic/proof-site.el")
+
   (server-start)
 
   (message (format "Startup time: %fs" (- (float-time) start-time))))
