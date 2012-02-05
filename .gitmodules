@@ -7,3 +7,6 @@
 [submodule "site-lisp/tuareg"]
 	path = site-lisp/tuareg
 	url = https://github.com/emacsmirror/tuareg.git
+[submodule "site-lisp/haskell-mode"]
+	path = site-lisp/haskell-mode
+	url = https://github.com/emacsmirror/haskell-mode.git
