@@ -3,3 +3,5 @@
 
 (add-hook 'coq-mode-hook 'set-proof-general-keys)
 (add-hook 'coq-mode-hook 'proof-three-window-toggle)
+
+(setq proof-splash-enable nil)
