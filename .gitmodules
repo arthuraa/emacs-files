@@ -10,3 +10,6 @@
 [submodule "site-lisp/haskell-mode"]
 	path = site-lisp/haskell-mode
 	url = https://github.com/emacsmirror/haskell-mode.git
+[submodule "site-lisp/typerex"]
+	path = site-lisp/typerex
+	url = https://github.com/OCamlPro/typerex.git
