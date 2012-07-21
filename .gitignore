@@ -5,3 +5,5 @@ auto-save-list
 image-dired
 elpa/archives
 session.*
+bin/
+share/
