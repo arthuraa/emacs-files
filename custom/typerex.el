@@ -13,6 +13,11 @@
 (setq ocp-server-command "/home/arthur/.emacs.d/bin/ocp-wizard")
 (setq-default indent-tabs-mode nil)
 
+(setq typerex-let-always-indent nil)
+(setq typerex-with-indent 0)
+(setq typerex-function-indent 0)
+(setq typerex-fun-indent 0)
+
 ;; Uncomment to enable typerex command menu by right click
 ;;(setq ocp-menu-trigger [mouse-3])
 
