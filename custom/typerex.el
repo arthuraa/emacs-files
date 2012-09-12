@@ -16,6 +16,7 @@
 (setq typerex-with-indent 0)
 (setq typerex-function-indent 0)
 (setq typerex-fun-indent 0)
+(setq typerex-case-arrow-extra-indent 0)
 
 ;; Uncomment to enable typerex command menu by right click
 ;;(setq ocp-menu-trigger [mouse-3])
