@@ -3,14 +3,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Loading TypeRex mode for OCaml files
-(add-to-list 'load-path "/home/arthur/.emacs.d/share/emacs/site-lisp")
 (add-to-list 'auto-mode-alist '("\\.ml[iylp]?" . typerex-mode))
 (add-to-list 'interpreter-mode-alist '("ocamlrun" . typerex-mode))
 (add-to-list 'interpreter-mode-alist '("ocaml" . typerex-mode))
 (autoload 'typerex-mode "typerex" "Major mode for editing Caml code" t)
 
 ;; TypeRex mode configuration
-(setq ocp-server-command "/home/arthur/.emacs.d/bin/ocp-wizard")
+(setq ocp-server-command "~/bin/ocp-wizard")
 (setq-default indent-tabs-mode nil)
 
 (setq typerex-let-always-indent nil)
@@ -22,7 +21,7 @@
 ;;(setq ocp-menu-trigger [mouse-3])
 
 ;; Uncomment to make new syntax coloring look almost like Tuareg
-;;(setq ocp-theme "tuareg_like")
+(setq ocp-theme "tuareg_like")
 ;; Uncomment to disable new syntax coloring and use Tuareg one
 ;;(setq ocp-theme "tuareg")
 ;; Uncomment to disable syntax coloring completely
