@@ -31,5 +31,4 @@
 (setq inhibit-startup-message t)
 (fringe-mode 4)
 
-(require 'color-theme-zenburn)
-(color-theme-zenburn)
+(load-theme 'zenburn t)

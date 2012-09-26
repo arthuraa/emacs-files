@@ -3,7 +3,7 @@ package-autoloads.el
 tramp
 auto-save-list
 image-dired
-elpa/archives
+elpa/
 session.*
 bin/
 share/
