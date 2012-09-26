@@ -1,26 +1,18 @@
-(require 'color-theme-zenburn)
-(color-theme-zenburn)
-
-(dolist (pattern (list "\\.rake$" "Gemfile$" "Gemfile\\.lock$"))
-  (add-to-list 'auto-mode-alist (cons pattern 'ruby-mode)))
-
 (show-paren-mode t)
 (ido-mode t)
 (setq standard-indent 2)
 (setq transient-mark-mode t)
 (setq scroll-step 1)
-(setq-default indent-tabs-mode nil) ; indentar com espaços
+(setq-default indent-tabs-mode nil)
 (setq-default fill-column 70)
 
-(line-number-mode   1)
+(line-number-mode 1)
 (column-number-mode 1)
 
 (setq search-highlight t)
 (global-font-lock-mode t)
 
 (setq case-fold-search t)
-
-;; ========== Place Backup Files in Specific Directory ==========
 
 ;; Enable backup files.
 (setq make-backup-files t)
@@ -35,9 +27,7 @@
 (setq-default icon-title-format frame-title-format)
 
 (put 'upcase-region 'disabled nil)
-
-(add-hook 'c-mode-common-hook
-          (lambda () (local-set-key "\C-c\C-k" 'compile)))
+(put 'downcase-region 'disabled nil)
 
 (defun word-count ()
   "Count words in buffer"
@@ -47,4 +37,4 @@
 (setq x-select-enable-clipboard t)
 (setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
 
-(add-hook 'after-save-hook 'delete-trailing-whitespace)
+(add-hook 'after-save-hook 'whitespace-cleanup)
