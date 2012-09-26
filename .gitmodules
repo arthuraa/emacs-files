@@ -13,3 +13,6 @@
 [submodule "site-lisp/typerex"]
 	path = site-lisp/typerex
 	url = https://github.com/OCamlPro/typerex.git
+[submodule "site-lisp/proofgeneral"]
+	path = site-lisp/proofgeneral
+	url = https://github.com/emacsmirror/proofgeneral.git

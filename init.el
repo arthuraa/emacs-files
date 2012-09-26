@@ -19,7 +19,7 @@
 
   (mapc 'load (file-expand-wildcards "~/.emacs.d/custom/*.el"))
 
-  (load "~/.emacs.d/site-lisp/ProofGeneral/generic/proof-site.el")
+  (load "~/.emacs.d/site-lisp/proofgeneral/generic/proof-site.el")
 
   (server-start)
 
