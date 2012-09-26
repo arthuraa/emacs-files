@@ -49,3 +49,24 @@
 (setq uniquify-separator "/")
 (setq uniquify-after-kill-buffer-p t)    ; rename after killing uniquified
 (setq uniquify-ignore-buffers-re "^\\*") ; don't muck with special buffers
+
+;; auto-completion in minibuffer
+(icomplete-mode +1)
+
+;; better buffer menu
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
+;; by default re-builder doesn't read RE as strings, which means that
+;; you can't copy and paste them in lisp code.
+(require 're-builder)
+(setq reb-re-syntax 'string)
+
+;; replace default Emacs yes-or-no prompt
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; I keep quitting by accident all the time
+(defun core-query-before-quit ()
+  (y-or-n-p "Really exit Emacs?"))
+(add-hook 'kill-emacs-query-functions
+          'core-query-before-quit
+          'append)
