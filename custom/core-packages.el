@@ -11,7 +11,7 @@
 ;(setq url-http-attempt-keepalives nil)
 
 (defvar core-packages-list
-  '(helm magit melpa rainbow-mode zenburn-theme))
+  '(helm magit melpa rainbow-mode zenburn-theme js2-mode))
 
 (defun core-install-packages ()
   (interactive)
