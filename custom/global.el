@@ -79,3 +79,5 @@
 (add-hook 'kill-emacs-query-functions
           'core-query-before-quit
           'append)
+
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
