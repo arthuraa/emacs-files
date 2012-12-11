@@ -7,8 +7,6 @@
     (mapc 'add-path (file-expand-wildcards "~/.emacs.d/site-lisp/*")))
 
   (require 'util)
-  (require 'package)
-  (package-initialize)
 
   (condition-case ex
       (require 'package-autoloads)

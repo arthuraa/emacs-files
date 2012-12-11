@@ -1,14 +1,19 @@
 (require 'cl)
-(require 'package)
 
-(labels ((add-repo (name url)
-                   (add-to-list 'package-archives
-                                (cons name url) t)))
-  (add-repo "marlalade" "http://marmalade-repo.org/packages/")
-  (add-repo "elpa" "http://tromey.com/elpa/")
-  (add-repo "melpa" "http://melpa.milkbox.net/packages/"))
+(defun core-setup-package ()
 
-;(setq url-http-attempt-keepalives nil)
+  (labels ((add-repo (name url)
+		     (add-to-list 'package-archives
+				  (cons name url) t)))
+    (add-repo "marlalade" "http://marmalade-repo.org/packages/")
+    (add-repo "elpa" "http://tromey.com/elpa/")
+    (add-repo "melpa" "http://melpa.milkbox.net/packages/"))
+
+  (package-initialize))
+
+(if (require 'package nil t)
+    (core-setup-package)
+  (message "package.el is not available"))
 
 (defvar core-packages-list
   '(helm magit melpa rainbow-mode zenburn-theme js2-mode
