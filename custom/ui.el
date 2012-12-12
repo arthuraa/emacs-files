@@ -31,8 +31,7 @@
 (setq inhibit-startup-message t)
 (fringe-mode 4)
 
-;(condition-case ex
-;    (load-theme 'zenburn t)
-;  ('error
-;   (message "Couldn't load theme.")))
-;
+(condition-case ex
+    (load-theme 'zenburn t)
+  ('error
+   (message "Couldn't load theme.")))
