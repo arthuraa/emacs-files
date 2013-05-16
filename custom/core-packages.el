@@ -17,7 +17,7 @@
 
 (defvar core-packages-list
   '(helm magit melpa rainbow-mode zenburn-theme js2-mode
-         markdown-mode))
+         markdown-mode auctex))
 
 (defun core-install-packages ()
   (interactive)
