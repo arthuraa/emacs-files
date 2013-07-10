@@ -23,7 +23,7 @@
 (global-set-key [f11] 'toggle-fullscreen)
 
 (mouse-wheel-mode t)
-(set-default-font deja-vu-mono-sans)
+(set-default-font deja-vu-mono-sans nil t)
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
