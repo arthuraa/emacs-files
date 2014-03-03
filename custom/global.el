@@ -81,3 +81,13 @@
           'append)
 
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
+;; Very useful function stolen from emacs wiki
+(defun increment-number-at-point ()
+  (interactive)
+  (skip-chars-backward "0123456789")
+  (or (looking-at "[0123456789]+")
+      (error "No number at point"))
+  (replace-match (number-to-string (1+ (string-to-number (match-string 0))))))
+
+(require 'iso-transl)
