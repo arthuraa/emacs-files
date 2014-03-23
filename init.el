@@ -19,11 +19,14 @@
   (mapc 'load (file-expand-wildcards "~/.emacs.d/custom/*.el"))
 
   (load "~/.emacs.d/site-lisp/proofgeneral/generic/proof-site.el")
+  (load "~/.emacs.d/site-lisp/pg-ssr.el")
 
   (condition-case ex
       (load "lilypond-init.el")
     ('error
      (message "lilypond is not available")))
+
+  (with-temp-buffer (insert (shell-command-to-string "ocp-edit-mode emacs -load-global-config")) (eval-buffer))
 
   (server-start)
 
