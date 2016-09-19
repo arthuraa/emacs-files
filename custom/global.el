@@ -4,7 +4,7 @@
 (setq transient-mark-mode t)
 (setq scroll-step 1)
 (setq-default indent-tabs-mode nil)
-(setq-default fill-column 70)
+(setq-default fill-column 80)
 
 (line-number-mode 1)
 (column-number-mode 1)
