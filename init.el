@@ -18,8 +18,8 @@
 
   (mapc 'load (file-expand-wildcards "~/.emacs.d/custom/*.el"))
 
-  (load "~/.emacs.d/site-lisp/proofgeneral/generic/proof-site.el")
-  (load "~/.emacs.d/site-lisp/pg-ssr.el")
+  ; (load "~/.emacs.d/site-lisp/proofgeneral/generic/proof-site.el")
+  ; (load "~/.emacs.d/site-lisp/pg-ssr.el")
 
   (condition-case ex
       (load "lilypond-init.el")
