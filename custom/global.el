@@ -21,7 +21,7 @@
 (setq version-control t)
 
 ;; Save all backup file in this directory.
-(setq backup-directory-alist (quote ((".*" . "~/.emacs_backups/"))))
+(setq backup-directory-alist (quote ((".*" . "~/.emacs.d/backup/"))))
 
 ;; set icon "tool tip" to show full path of current file
 (setq-default icon-title-format frame-title-format)
