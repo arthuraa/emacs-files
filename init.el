@@ -26,8 +26,6 @@
     ('error
      (message "lilypond is not available")))
 
-  (with-temp-buffer (insert (shell-command-to-string "ocp-edit-mode emacs -load-global-config")) (eval-buffer))
-
   (server-start)
 
   (message (format "Startup time: %fs" (- (float-time) start-time))))
