@@ -7,3 +7,5 @@ elpa/
 session.*
 bin/
 share/
+eshell/
+url/
