@@ -4,15 +4,9 @@
 [submodule "site-lisp/gimme"]
 	path = site-lisp/gimme
 	url = git@github.com:arthuraa/GIMME.git
-[submodule "site-lisp/tuareg"]
-	path = site-lisp/tuareg
-	url = https://github.com/emacsmirror/tuareg.git
 [submodule "site-lisp/haskell-mode"]
 	path = site-lisp/haskell-mode
 	url = https://github.com/emacsmirror/haskell-mode.git
-[submodule "site-lisp/typerex"]
-	path = site-lisp/typerex
-	url = https://github.com/OCamlPro/typerex.git
 [submodule "site-lisp/proofgeneral"]
 	path = site-lisp/proofgeneral
 	url = https://github.com/ProofGeneral/PG.git
