@@ -7,7 +7,8 @@
   (expand-file-name "~/.emacs.d/package-autoloads.el"))
 
 (defvar util-package-source-dirs
-  (file-expand-wildcards (concat util-packages-home "/*")))
+  (remove-if-not #'file-accessible-directory-p
+                 (file-expand-wildcards (concat util-packages-home "/*"))))
 
 (defun util-compile-packages ()
   (interactive)

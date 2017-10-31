@@ -4,19 +4,16 @@
 
   (labels ((add-path (path) (add-to-list 'load-path path)))
     (add-path "/usr/share/emacs/site-lisp")
-    (add-path (expand-file-name "~/.emacs.d"))
     (mapc #'add-path (file-expand-wildcards "~/.emacs.d/site-lisp/*")))
 
-  (require 'util)
+  (mapc 'load (file-expand-wildcards "~/.emacs.d/custom/*.el"))
 
   (condition-case ex
-      (require 'package-autoloads)
+      (load "~/.emacs.d/package-autoloads.el")
     ('error
      (util-compile-packages)
      (util-generate-package-autoloads)
-     (require 'package-autoloads)))
-
-  (mapc 'load (file-expand-wildcards "~/.emacs.d/custom/*.el"))
+     (load "~/.emacs.d/package-autoloads.el")))
 
   (load "~/.emacs.d/site-lisp/proofgeneral/generic/proof-site.el")
   (load "~/.emacs.d/site-lisp/pg-ssr.el")
@@ -27,5 +24,10 @@
      (message "lilypond is not available")))
 
   (server-start)
+
+  (defun opam-env ()
+    (interactive)
+    (dolist (var (car (read-from-string (shell-command-to-string "opam config env --sexp"))))
+      (setenv (car var) (cadr var))))
 
   (message (format "Startup time: %fs" (- (float-time) start-time))))
