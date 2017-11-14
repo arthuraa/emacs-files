@@ -40,12 +40,6 @@
 (whitespace-mode)
 (setq whitespace-style (set-difference whitespace-style
                                        '(tabs newline spaces)))
-(defadvice whitespace-cleanup (around whitespace-cleanup-indent-tab
-                                      activate)
-  "Fix whitespace-cleanup indent-tabs-mode bug"
-  (let ((whitespace-indent-tabs-mode indent-tabs-mode)
-        (whitespace-tab-width tab-width))
-    ad-do-it))
 (add-hook 'after-save-hook 'whitespace-cleanup)
 
 ;; use shift + arrow keys to switch between visible buffers
