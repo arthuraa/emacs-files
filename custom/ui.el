@@ -16,6 +16,7 @@
 
 (set-face-attribute 'default nil :font "DejaVu Sans Mono-10")
 
+(setq ring-bell-function #'ignore)
 (mouse-wheel-mode t)
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
