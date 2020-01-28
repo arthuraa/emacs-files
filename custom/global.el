@@ -40,7 +40,6 @@
 (whitespace-mode)
 (setq whitespace-style (set-difference whitespace-style
                                        '(tabs newline spaces)))
-(add-hook 'after-save-hook 'whitespace-cleanup)
 
 ;; use shift + arrow keys to switch between visible buffers
 (require 'windmove)

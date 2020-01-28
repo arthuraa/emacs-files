@@ -1,33 +1,36 @@
-(let ((start-time (float-time)))
+(package-initialize)
 
-  (require 'cl)
+(require 'cl)
+(require 'ws-butler)
 
-  (cl-labels ((add-path (path) (add-to-list 'load-path path)))
-    (add-path "/usr/share/emacs/site-lisp")
-    (mapc #'add-path (file-expand-wildcards "~/.emacs.d/site-lisp/*")))
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file 'noerror)
 
-  (mapc 'load (file-expand-wildcards "~/.emacs.d/custom/*.el"))
+(cl-labels ((add-path (path) (add-to-list 'load-path path)))
+  (add-path "/usr/share/emacs/site-lisp")
+  (mapc #'add-path (file-expand-wildcards "~/.emacs.d/site-lisp/*")))
 
-  (condition-case ex
-      (load "~/.emacs.d/package-autoloads.el")
-    ('error
-     (util-compile-packages)
-     (util-generate-package-autoloads)
-     (load "~/.emacs.d/package-autoloads.el")))
+(mapc 'load (file-expand-wildcards "~/.emacs.d/custom/*.el"))
 
-  (load "~/.emacs.d/site-lisp/proofgeneral/generic/proof-site.el")
-  (load "~/.emacs.d/site-lisp/pg-ssr.el")
+(condition-case ex
+    (load "~/.emacs.d/package-autoloads.el")
+  ('error
+   (util-compile-packages)
+   (util-generate-package-autoloads)
+   (load "~/.emacs.d/package-autoloads.el")))
 
-  (condition-case ex
-      (load "lilypond-init.el")
-    ('error
-     (message "lilypond is not available")))
+(load "~/.emacs.d/site-lisp/proofgeneral/generic/proof-site.el")
+(load "~/.emacs.d/site-lisp/pg-ssr.el")
 
-  (server-start)
+(condition-case ex
+    (load "lilypond-init.el")
+  ('error
+   (message "lilypond is not available")))
 
-  (defun opam-env ()
-    (interactive)
-    (dolist (var (car (read-from-string (shell-command-to-string "opam config env --sexp"))))
-      (setenv (car var) (cadr var))))
+(server-start)
 
-  (message (format "Startup time: %fs" (- (float-time) start-time))))
+(defun opam-env ()
+  (interactive)
+  (dolist (var (car (read-from-string (shell-command-to-string "opam config env --sexp"))))
+    (setenv (car var) (cadr var))))
+
