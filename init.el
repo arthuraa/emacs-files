@@ -1,7 +1,9 @@
 (package-initialize)
 
 (require 'cl)
+
 (require 'ws-butler)
+(ws-butler-global-mode)
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
