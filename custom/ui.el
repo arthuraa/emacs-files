@@ -30,3 +30,5 @@
     (load-theme 'zenburn t)
   ('error
    (message "Couldn't load theme.")))
+
+(global-set-key (kbd "C-c k") 'compile)
