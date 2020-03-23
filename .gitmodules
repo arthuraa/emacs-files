@@ -4,6 +4,3 @@
 [submodule "site-lisp/gimme"]
 	path = site-lisp/gimme
 	url = git@github.com:arthuraa/GIMME.git
-[submodule "site-lisp/proofgeneral"]
-	path = site-lisp/proofgeneral
-	url = https://github.com/ProofGeneral/PG.git
