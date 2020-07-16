@@ -21,18 +21,9 @@
    (util-generate-package-autoloads)
    (load "~/.emacs.d/package-autoloads.el")))
 
-(load "~/.emacs.d/site-lisp/proofgeneral/generic/proof-site.el")
-(load "~/.emacs.d/site-lisp/pg-ssr.el")
-
 (condition-case ex
     (load "lilypond-init.el")
   ('error
    (message "lilypond is not available")))
 
 (server-start)
-
-(defun opam-env ()
-  (interactive)
-  (dolist (var (car (read-from-string (shell-command-to-string "opam config env --sexp"))))
-    (setenv (car var) (cadr var))))
-
