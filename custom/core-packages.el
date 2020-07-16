@@ -5,8 +5,6 @@
   (labels ((add-repo (name url)
                      (add-to-list 'package-archives
                                   (cons name url) t)))
-    (add-repo "marmalade" "https://marmalade-repo.org/packages/")
-    (add-repo "elpa" "http://tromey.com/elpa/")
     (add-repo "melpa" "http://melpa.milkbox.net/packages/"))
 
   (package-initialize))
