@@ -1,6 +1,0 @@
-[submodule "site-lisp/matlab-emacs"]
-	path = site-lisp/matlab-emacs
-	url = https://github.com/ruediger/matlab-emacs.git
-[submodule "site-lisp/gimme"]
-	path = site-lisp/gimme
-	url = git@github.com:arthuraa/GIMME.git

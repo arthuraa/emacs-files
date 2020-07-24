@@ -5,9 +5,9 @@
 
 ;;;; Setup packages
 
-(add-to-list 'package-archives
-             (cons "melpa" "http://melpa.milkbox.net/packages")
-             t)
+(add-to-list
+ 'package-archives
+ (cons "melpa" "http://melpa.milkbox.net/packages"))
 
 (defvar core-packages-list
   '(helm magit rainbow-mode zenburn-theme js2-mode
@@ -82,13 +82,13 @@
 
 (setq make-backup-files t)
 
-;; Enable versioning with default values (keep five last versions, I think!)
+;;;; Enable versioning with default values (keep five last versions, I think!)
 (setq version-control t)
 
-;; Save all backup file in this directory.
+;;;; Save all backup file in this directory.
 (setq backup-directory-alist (quote ((".*" . "~/.emacs.d/backup/"))))
 
-;; set icon "tool tip" to show full path of current file
+;;;; set icon "tool tip" to show full path of current file
 (setq-default icon-title-format frame-title-format)
 
 (put 'upcase-region 'disabled nil)
@@ -106,32 +106,32 @@
 (setq whitespace-style (set-difference whitespace-style
                                        '(tabs newline spaces)))
 
-;; use shift + arrow keys to switch between visible buffers
+;;;; use shift + arrow keys to switch between visible buffers
 (require 'windmove)
 (windmove-default-keybindings)
 
-;; meaningful names for buffers with the same name
+;;;; meaningful names for buffers with the same name
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 (setq uniquify-separator "/")
 (setq uniquify-after-kill-buffer-p t)    ; rename after killing uniquified
 (setq uniquify-ignore-buffers-re "^\\*") ; don't muck with special buffers
 
-;; auto-completion in minibuffer
+;;;; auto-completion in minibuffer
 (icomplete-mode +1)
 
-;; better buffer menu
+;;;; better buffer menu
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
-;; by default re-builder doesn't read RE as strings, which means that
-;; you can't copy and paste them in lisp code.
+;;;; by default re-builder doesn't read RE as strings, which means that you
+;;;; can't copy and paste them in lisp code.
 (require 're-builder)
 (setq reb-re-syntax 'string)
 
-;; replace default Emacs yes-or-no prompt
+;;;; replace default Emacs yes-or-no prompt
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;; I keep quitting by accident all the time
+;;;; I keep quitting by accident all the time
 (defun core-query-before-quit ()
   (y-or-n-p "Really exit Emacs?"))
 (add-hook 'kill-emacs-query-functions
@@ -140,7 +140,7 @@
 
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
-;; Very useful function stolen from emacs wiki
+;;;; Very useful function stolen from emacs wiki
 (defun increment-number-at-point ()
   (interactive)
   (skip-chars-backward "0123456789")
@@ -174,7 +174,7 @@
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
 (fringe-mode 4)
-(when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
+(electric-indent-mode -1)
 
 (condition-case ex
     (load-theme 'gruvbox-light-hard t)
@@ -202,9 +202,10 @@
 
 (setq agda2-include-dirs '("." "/home/arthur/src/agda-stdlib-0.9/src"))
 
-;;;; * auctex
+;;;; * AUCTeX
 
-;;;; Try to work around anoying bug that turns off PDF mode when finding an error
+;;;; Try to work around anoying bug that turns off PDF mode when finding an
+;;;; error
 ;;;; http://tex.stackexchange.com/questions/114316/auctex-global-pdf-mode-stop-working-after-typesetting-error-occurs
 
 (defun my-tex-global-pdf-mode ()
@@ -326,6 +327,53 @@
 
 (setq proof-three-window-enable t)
 (setq proof-splash-enable nil)
+
+;;;; Customization of PG for ssreflect syntax
+;;;; Assia Mahboubi 2007
+
+(defcustom coq-user-tactics-db
+   '(("nat_congr" "ncongr"  "nat_congr" t "nat_congr")
+     ("nat_norm" "nnorm"  "nat_norm" t "nat_norm")
+     ("bool_congr" "bcongr"  "bool_congr" t "bool_congr")
+     ("prop_congr" "prcongr"  "prop_congr" t "prop_congr")
+     ("move" "m"  "move" t "move")
+     ("set" "set"  "set # := #" t "set")
+     ("have" "hv" "have # : #" t "have")
+     ("congr" "con" "congr #" t "congr")
+     ("wlog" "wlog" "wlog : / #" t "wlog")
+     ("without loss" "wilog" "without loss #" t "without loss")
+     ("unlock" "unlock" "unlock #" t "unlock")
+     ("suffices" "suffices" "suffices # : #" t "suffices")
+     ("suff" "suff" "suff # : #" t "suff")
+)
+   "Extended list of tactics, includings ssr and user defined ones")
+
+
+(defcustom coq-user-commands-db
+  '(("Prenex Implicits" "pi" "Prenex Implicits #" t "Prenex\\s-+Implicits")
+    ("Hint View for" "hv" "Hint View for #" t "Hint\\s-+View\\s-+for")
+    ("inside" "ins" nil f "inside")
+    ("outside" "outs" nil f "outside")
+    ("Canonical " nil "Canonical  #." t "Canonical")
+)
+   "Extended list of commands, includings ssr and user defined ones")
+
+(defcustom coq-user-tacticals-db
+  '(("last" "lst" nil t "last"))
+  "Extended list of tacticals, includings ssr and user defined ones")
+
+(defcustom coq-user-reserved-db
+  '("is" "nosimpl" "of")
+  "Extended list of keywords, includings ssr and user defined ones")
+
+(defcustom coq-user-solve-tactics-db
+  '(("done" nil "done" nil "done")
+    )
+   "Extended list of closing tactic(al)s, includings ssr and user defined ones")
+
+(defcustom coq-variable-highlight-enable nil
+  "Activates partial bound variable highlighting"
+)
 
 ;;;; * Proverif
 
