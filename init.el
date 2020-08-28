@@ -5,20 +5,9 @@
 
 ;;;; Setup packages
 
-(add-to-list
- 'package-archives
- (cons "melpa" "http://melpa.milkbox.net/packages"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 
-(defvar core-packages-list
-  '(helm magit rainbow-mode zenburn-theme js2-mode
-         markdown-mode auctex))
-
-(defun core-install-packages ()
-  (interactive)
-  (package-refresh-contents)
-  (dolist (package core-packages-list)
-    (unless (package-installed-p package)
-      (package-install package))))
+(require 'use-package)
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
@@ -34,10 +23,7 @@
    (util-generate-package-autoloads)
    (load "~/.emacs.d/package-autoloads.el")))
 
-(condition-case ex
-    (load "lilypond-init.el")
-  ('error
-   (message "lilypond is not available")))
+(load "lilypond-init.el" t)
 
 (defvar util-packages-home
   (expand-file-name "~/.emacs.d/site-lisp"))
@@ -61,11 +47,11 @@
 
 ;;;; Keys, global configurations, etc.
 
-(require 'ws-butler)
-(ws-butler-global-mode)
+(use-package ws-butler
+  :config
+  (ws-butler-global-mode))
 
 (show-paren-mode t)
-(ido-mode t)
 (setq standard-indent 2)
 (setq transient-mark-mode t)
 (setq scroll-step 1)
@@ -111,6 +97,7 @@
 (windmove-default-keybindings)
 
 ;;;; meaningful names for buffers with the same name
+
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 (setq uniquify-separator "/")
@@ -119,9 +106,6 @@
 
 ;;;; auto-completion in minibuffer
 (icomplete-mode +1)
-
-;;;; better buffer menu
-(global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;;;; by default re-builder doesn't read RE as strings, which means that you
 ;;;; can't copy and paste them in lisp code.
@@ -176,13 +160,26 @@
 (fringe-mode 4)
 (electric-indent-mode -1)
 
-(condition-case ex
-    (load-theme 'gruvbox-light-hard t)
-  ('error
-   (message "Couldn't load theme.")))
+(use-package gruvbox
+  :config
+  (load-theme 'gruvbox-light-hard t)
+)
 
 (global-set-key (kbd "C-c k") 'compile)
 
+(use-package helm
+  :config
+  (helm-mode 1)
+  :bind
+  (("C-x C-b" . helm-mini)
+   ("C-x C-f" . helm-find-files)
+   ("M-x" . helm-M-x)))
+
+(use-package magit
+  :bind
+  (("C-c g" . magit-status)))
+
+;;;; Ensure that dead keys work
 (require 'iso-transl)
 
 ;;;; Mode configurations
@@ -219,26 +216,28 @@
 
 ;;;; * Haskell
 
-(custom-set-variables
-  '(haskell-process-suggest-remove-import-lines t)
-  '(haskell-process-auto-import-loaded-modules t)
-  '(haskell-process-log t)
-  '(haskell-proceess-type 'cabal-repl))
-(eval-after-load 'haskell-mode '(progn
-  (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
-  (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
-  (define-key haskell-mode-map (kbd "C-c C-n C-t") 'haskell-process-do-type)
-  (define-key haskell-mode-map (kbd "C-c C-n C-i") 'haskell-process-do-info)
-  (define-key haskell-mode-map (kbd "C-c C-n C-c") 'haskell-process-cabal-build)
-  (define-key haskell-mode-map (kbd "C-c C-n c") 'haskell-process-cabal)))
-(eval-after-load 'haskell-cabal '(progn
-  (define-key haskell-cabal-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
-  (define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
-  (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
-  (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
-(add-hook 'haskell-mode-hook 'haskell-indentation-mode)
-(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-(setq haskell-program-name "ghci")
+(use-package haskell-mode
+  :config
+  (custom-set-variables
+   '(haskell-process-suggest-remove-import-lines t)
+   '(haskell-process-auto-import-loaded-modules t)
+   '(haskell-process-log t)
+   '(haskell-proceess-type 'cabal-repl))
+  (eval-after-load 'haskell-mode '(progn
+    (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
+    (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
+    (define-key haskell-mode-map (kbd "C-c C-n C-t") 'haskell-process-do-type)
+    (define-key haskell-mode-map (kbd "C-c C-n C-i") 'haskell-process-do-info)
+    (define-key haskell-mode-map (kbd "C-c C-n C-c") 'haskell-process-cabal-build)
+    (define-key haskell-mode-map (kbd "C-c C-n c") 'haskell-process-cabal)))
+  (eval-after-load 'haskell-cabal '(progn
+    (define-key haskell-cabal-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
+    (define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
+    (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
+    (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
+  (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
+  (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+  (setq haskell-program-name "ghci"))
 
 ;;;; * Iris input mode
 
@@ -324,6 +323,13 @@
   (local-set-key (kbd "C-c C-k") 'proof-goto-point))
 
 (add-hook 'coq-mode-hook 'set-proof-general-keys)
+(add-hook 'coq-mode-hook 'company-coq-mode)
+(setq company-coq-disabled-features
+      '(prettify-symbols
+        title-comments
+        coqdoc
+        smart-subscripts
+        code-folding))
 
 (setq proof-three-window-enable t)
 (setq proof-splash-enable nil)
@@ -388,10 +394,11 @@
 
 ;;;; * SCSS
 
-(defun set-scss-variables ()
-  (setq scss-compile-at-save nil))
-
-(add-hook 'scss-mode-hook 'set-scss-variables)
+(use-package scss-mode
+  :config
+  (defun set-scss-variables ()
+    (setq scss-compile-at-save nil))
+  (add-hook 'scss-mode-hook 'set-scss-variables))
 
 ;;;; * Text
 
