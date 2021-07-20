@@ -183,6 +183,11 @@
    ("C-x C-f" . helm-find-files)
    ("M-x" . helm-M-x)))
 
+(use-package tuareg)
+(use-package utop
+  :hook
+  (tuareg-mode . utop-minor-mode))
+
 (use-package magit
   :bind
   (("C-c g" . magit-status)))
