@@ -334,7 +334,8 @@
         title-comments
         coqdoc
         smart-subscripts
-        code-folding))
+        code-folding
+        company))
 
 (setq proof-three-window-enable t)
 (setq proof-splash-enable nil)
