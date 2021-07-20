@@ -23,8 +23,6 @@
    (util-generate-package-autoloads)
    (load "~/.emacs.d/package-autoloads.el")))
 
-(load "lilypond-init.el" t)
-
 (defvar util-packages-home
   (expand-file-name "~/.emacs.d/site-lisp"))
 
@@ -198,6 +196,13 @@
 (agda-input-setup)
 
 (setq agda2-include-dirs '("." "/home/arthur/src/agda-stdlib-0.9/src"))
+
+;;;; * LilyPond
+
+(use-package lilypond-mode
+  :config
+  (custom-set-variables
+   '(LilyPond-pdf-command "evince")))
 
 ;;;; * AUCTeX
 
