@@ -158,12 +158,15 @@
 (fringe-mode 4)
 (electric-indent-mode -1)
 
-(use-package gruvbox
+(global-set-key (kbd "C-c k") 'compile)
+
+;;;; * Theme
+
+(use-package zenburn-theme
   :config
-  (load-theme 'gruvbox-light-hard t)
+  (load-theme 'zenburn t)
 )
 
-(global-set-key (kbd "C-c k") 'compile)
 
 (use-package helm
   :config
