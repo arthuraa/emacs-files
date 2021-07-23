@@ -16,31 +16,6 @@
   (add-path "/usr/share/emacs/site-lisp")
   (mapc #'add-path (file-expand-wildcards "~/.emacs.d/site-lisp/*")))
 
-(condition-case ex
-    (load "~/.emacs.d/package-autoloads.el")
-  ('error
-   (util-compile-packages)
-   (util-generate-package-autoloads)
-   (load "~/.emacs.d/package-autoloads.el")))
-
-(defvar util-packages-home
-  (expand-file-name "~/.emacs.d/site-lisp"))
-
-(defvar generated-autoload-file
-  (expand-file-name "~/.emacs.d/package-autoloads.el"))
-
-(defvar util-package-source-dirs
-  (remove-if-not #'file-accessible-directory-p
-                 (file-expand-wildcards (concat util-packages-home "/*"))))
-
-(defun util-compile-packages ()
-  (interactive)
-  (byte-recompile-directory util-packages-home 0))
-
-(defun util-generate-package-autoloads ()
-  (interactive)
-  (mapc 'update-directory-autoloads util-package-source-dirs))
-
 (server-start)
 
 ;;;; Keys, global configurations, etc.
