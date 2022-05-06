@@ -135,12 +135,21 @@
 
 (global-set-key (kbd "C-c k") 'compile)
 
+;;;; Enable direnv (manage environment variables on a per-directory basis)
+
+(use-package direnv
+  :config
+  (direnv-mode))
+
 ;;;; * Theme
 
 (use-package zenburn-theme
   :config
-  (load-theme 'zenburn t)
-)
+  (load-theme 'zenburn t))
+
+;; (use-package solarized-theme
+;;   :config
+;;   (load-theme 'solarized-light-high-contrast t))
 
 ;;;; * Multiple cursors
 
