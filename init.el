@@ -133,7 +133,42 @@
 (fringe-mode 4)
 (electric-indent-mode -1)
 
-(global-set-key (kbd "C-c k") 'compile)
+;;;; * Compilation settings
+;;;;
+;;;; By default, Emacs does a poor job of figuring out which command to use when
+;;;; compiling a project.  The following code attempts to find a parent
+;;;; directory that contains a Makefile to call make, while giving priority to
+;;;; local definitions of compile-command when they are provided.
+
+;;;; Use parallel make by default (-j)
+(setq compile-command "make -k -j ")
+
+(defun set-up-compile-command ()
+  "Override the value of compile-command if there is a Makefile
+in a parent directory, while making it buffer local. In this
+case, the new compile-command will use the directory of the
+Makefile to call make."
+  (let ((makefile-dir (locate-dominating-file "." "Makefile")))
+    (if makefile-dir
+        (set (make-local-variable 'compile-command)
+             (format "make -C %s -k -j " makefile-dir))))
+
+(defun compile-maybe-with-makefile ()
+  "Call the compile function with the following compilation command:
+
+1. The local value of compile-command, if one exists.
+
+2. Change the directory to the nearest parent that contains a
+Makefile, if one exists, then call make.  Use this as the local
+value of compile-command henceforth.
+
+3. The global value of compile-command, if no such parent exists."
+  (interactive)
+  (unless (assoc 'compile-command file-local-variables-alist)
+    (set-up-compile-command))
+  (call-interactively 'compile))
+
+(global-set-key (kbd "C-c k") 'compile-maybe-with-makefile)
 
 ;;;; Enable direnv (manage environment variables on a per-directory basis)
 
