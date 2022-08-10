@@ -151,7 +151,7 @@ Makefile to call make."
   (let ((makefile-dir (locate-dominating-file "." "Makefile")))
     (if makefile-dir
         (set (make-local-variable 'compile-command)
-             (format "make -C %s -k -j " makefile-dir))))
+             (format "make -C %s -k -j " makefile-dir)))))
 
 (defun compile-maybe-with-makefile ()
   "Call the compile function with the following compilation command:
