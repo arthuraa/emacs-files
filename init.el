@@ -29,7 +29,6 @@
 (setq transient-mark-mode t)
 (setq scroll-step 1)
 (setq-default indent-tabs-mode nil)
-(setq-default fill-column 80)
 
 (line-number-mode 1)
 (column-number-mode 1)
@@ -227,6 +226,13 @@ value of compile-command henceforth.
   (custom-set-variables
    '(LilyPond-pdf-command "evince")))
 
+;;;; * Text
+
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+(add-hook 'text-mode-hook 'flyspell-mode)
+(setq-default fill-column 80)
+(global-set-key (kbd "C-c q") 'auto-fill-mode)
+
 ;;;; * AUCTeX
 
 ;;;; Try to work around anoying bug that turns off PDF mode when finding an
@@ -240,7 +246,6 @@ value of compile-command henceforth.
   (setq TeX-auto-save t))
 
 (add-hook 'TeX-mode-hook 'my-tex-global-pdf-mode)
-(add-hook 'TeX-mode-hook 'turn-on-auto-fill)
 
 ;;;; * Haskell
 
@@ -429,7 +434,3 @@ value of compile-command henceforth.
     (setq scss-compile-at-save nil))
   (add-hook 'scss-mode-hook 'set-scss-variables))
 
-;;;; * Text
-
-(add-hook 'text-mode-hook 'auto-fill-mode)
-(add-hook 'text-mode-hook 'flyspell-mode)
