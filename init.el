@@ -233,20 +233,6 @@ value of compile-command henceforth.
 (setq-default fill-column 80)
 (global-set-key (kbd "C-c q") 'auto-fill-mode)
 
-;;;; * AUCTeX
-
-;;;; Try to work around anoying bug that turns off PDF mode when finding an
-;;;; error
-;;;; http://tex.stackexchange.com/questions/114316/auctex-global-pdf-mode-stop-working-after-typesetting-error-occurs
-
-(defun my-tex-global-pdf-mode ()
-  (setq TeX-PDF-mode t)
-  (setq TeX-show-compilation t)
-  (setq TeX-parse-self t)
-  (setq TeX-auto-save t))
-
-(add-hook 'TeX-mode-hook 'my-tex-global-pdf-mode)
-
 ;;;; * Haskell
 
 (use-package haskell-mode
