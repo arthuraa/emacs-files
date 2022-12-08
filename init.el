@@ -76,9 +76,6 @@
 (setq uniquify-after-kill-buffer-p t)    ; rename after killing uniquified
 (setq uniquify-ignore-buffers-re "^\\*") ; don't muck with special buffers
 
-;;;; auto-completion in minibuffer
-(icomplete-mode +1)
-
 ;;;; by default re-builder doesn't read RE as strings, which means that you
 ;;;; can't copy and paste them in lisp code.
 (require 're-builder)
