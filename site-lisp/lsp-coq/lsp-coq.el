@@ -1,8 +1,11 @@
 (require 'lsp-mode)
 (require 'dash)
 
+;; Tell lsp-mode to associate coq-mode with Coq
 (push '(coq-mode . "coq") lsp-language-id-configuration)
 
+;; Interfaces used by the proof/goals request of coq-lsp, which prints the
+;; current goal.
 (lsp-interface
   (coq-lsp:Hyp
     (:names :ty)
@@ -18,6 +21,7 @@
   (coq-lsp:GoalAnswer
     (:textDocument :position :messages)
     (:goals :error :program)))
+
 
 (lsp-defun lsp-coq--show-hyp ((&coq-lsp:Hyp :names :ty :def?))
   (--map (insert (format "%s " it)) names)
@@ -51,6 +55,7 @@
     coq-goals-buffer))
 
 (defun lsp-coq-proof/goals ()
+  "Display the current goals on a separate window."
   (interactive)
   (let* ((coq-goals-buffer (lsp-coq--set-goal-windows))
          (arguments (list :textDocument (lsp--text-document-identifier)
@@ -60,7 +65,7 @@
     (with-current-buffer coq-goals-buffer
       (lsp-coq--show-goals result))))
 
-
+;; Configure lsp-mode to connect to Coq via coq-lsp
 (lsp-register-client
   (make-lsp-client :new-connection (lsp-stdio-connection "coq-lsp")
                    :activation-fn (lsp-activate-on "coq")
