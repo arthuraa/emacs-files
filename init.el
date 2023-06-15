@@ -417,3 +417,11 @@ value of compile-command henceforth.
     (setq scss-compile-at-save nil))
   (add-hook 'scss-mode-hook 'set-scss-variables))
 
+
+;;;; * LSP
+
+(use-package lsp-mode
+  :init (setq lsp-keymap-prefix "C-c l")
+  :bind (("C-c p" . lsp-coq-proof/goals))
+  :config (use-package lsp-coq)
+  :commands lsp)
