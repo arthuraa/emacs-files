@@ -212,6 +212,11 @@ value of compile-command henceforth.
 
 ;;;; Mode configurations
 
+;;;; * Dired
+
+; Use neighboring dired window as default file destination when copying file.
+(setq dired-dwim-target t)
+
 ;;;; * Agda
 
 (use-package agda2-mode)
