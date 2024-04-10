@@ -447,3 +447,7 @@ value of compile-command henceforth.
   :bind (("C-c p" . lsp-coq-proof/goals))
   :config (use-package lsp-coq)
   :commands lsp)
+
+;;;; * Shell-here
+
+(use-package shell-here)
