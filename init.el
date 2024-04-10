@@ -241,6 +241,12 @@ value of compile-command henceforth.
 
 ;;;; * Text
 
+(defun setup-text-mode-isearch ()
+  "Ensure that each space can match a newline in isearch"
+  (make-local-variable 'search-whitespace-regexp)
+  (setq search-whitespace-regexp "[ \t\n\r]+"))
+
+(add-hook 'text-mode-hook 'setup-text-mode-isearch)
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'text-mode-hook 'flyspell-mode)
 (setq-default fill-column 80)
