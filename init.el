@@ -217,6 +217,17 @@ value of compile-command henceforth.
 ; Use neighboring dired window as default file destination when copying file.
 (setq dired-dwim-target t)
 
+(defun dired-open-file ()
+  "In dired, open the file named on this line."
+  (interactive)
+  (let* ((file (dired-get-filename nil t)))
+    (call-process "xdg-open" nil 0 nil file)))
+
+(add-hook 'dired-mode-hook
+  (lambda ()
+    (require 'dired)
+    (define-key dired-mode-map (kbd "C-c o") 'dired-open-file)))
+
 ;;;; * Agda
 
 (use-package agda2-mode)
