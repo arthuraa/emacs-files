@@ -58,7 +58,7 @@
   (shell-command-on-region (point-min) (point-max) "wc -w"))
 
 (setq x-select-enable-clipboard t)
-(setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
+(setq interprogram-paste-function 'x-selection-value)
 
 (whitespace-mode)
 (setq whitespace-style (set-difference whitespace-style
@@ -117,7 +117,7 @@
 
 (global-set-key [f11] 'toggle-fullscreen)
 
-(set-face-attribute 'default nil :font "DejaVu Sans Mono-14")
+(set-face-attribute 'default nil :font "DejaVu Sans Mono" :height 140)
 
 (setq ring-bell-function #'ignore)
 (mouse-wheel-mode t)
@@ -188,6 +188,7 @@ value of compile-command henceforth.
   :bind
   (("C-<" . mc/mark-previous-like-this)
    ("C->" . mc/mark-next-like-this)
+   ("C-M->" . mc/skip-to-next-like-this)
    ("C-c C-<" . mc/mark-all-like-this)))
 
 (use-package helm
@@ -214,19 +215,19 @@ value of compile-command henceforth.
 
 ;;;; * Dired
 
-; Use neighboring dired window as default file destination when copying file.
-(setq dired-dwim-target t)
-
 (defun dired-open-file ()
   "In dired, open the file named on this line."
   (interactive)
   (let* ((file (dired-get-filename nil t)))
     (call-process "xdg-open" nil 0 nil file)))
 
-(add-hook 'dired-mode-hook
-  (lambda ()
-    (require 'dired)
-    (define-key dired-mode-map (kbd "C-c o") 'dired-open-file)))
+(use-package dired
+  :ensure nil
+  :config
+  ; Use neighboring dired window as default file destination when copying file.
+  (setq dired-dwim-target t)
+  ; Use this binding to match what Helm uses in find-file
+  :bind ("C-c C-x" . 'dired-open-file))
 
 ;;;; * Agda
 
