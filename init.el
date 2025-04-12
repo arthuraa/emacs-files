@@ -16,8 +16,6 @@
   (add-path "/usr/share/emacs/site-lisp")
   (mapc #'add-path (file-expand-wildcards "~/.emacs.d/site-lisp/*")))
 
-(server-start)
-
 ;;;; Keys, global configurations, etc.
 
 (use-package ws-butler
