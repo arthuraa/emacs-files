@@ -1,20 +1,9 @@
-(package-initialize)
+;;;; For global package setup, see early-init.el
 
 (require 'cl)
-(require 'package)
-
-;;;; Setup packages
-
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-
-(require 'use-package)
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
-
-(cl-labels ((add-path (path) (add-to-list 'load-path path)))
-  (add-path "/usr/share/emacs/site-lisp")
-  (mapc #'add-path (file-expand-wildcards "~/.emacs.d/site-lisp/*")))
 
 ;;;; Keys, global configurations, etc.
 
