@@ -1,7 +1,5 @@
 ;;;; For global package setup, see early-init.el
 
-(require 'cl)
-
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
 
@@ -48,8 +46,8 @@
 (setq interprogram-paste-function 'x-selection-value)
 
 (whitespace-mode)
-(setq whitespace-style (set-difference whitespace-style
-                                       '(tabs newline spaces)))
+(setq whitespace-style (cl-set-difference whitespace-style
+                                          '(tabs newline spaces)))
 
 ;;;; use shift + arrow keys to switch between visible buffers
 (require 'windmove)
