@@ -238,6 +238,11 @@ value of compile-command henceforth.
 (setq-default fill-column 80)
 (global-set-key (kbd "C-c q") 'auto-fill-mode)
 
+;;;; * TeX
+
+; Allow moving to corresponding point in PDF with C-c C-v
+(setq TeX-source-correlate-mode t)
+
 ;;;; * Haskell
 
 (use-package haskell-mode
