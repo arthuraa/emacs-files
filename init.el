@@ -161,7 +161,15 @@ value of compile-command henceforth.
 
 (use-package zenburn-theme
   :config
-  (load-theme 'zenburn t))
+  (load-theme 'zenburn t)
+  (zenburn-with-color-variables
+    (custom-theme-set-faces
+      'zenburn
+      `(rocq-mode-last-goal-request ((t (:background ,zenburn-blue-5))))
+      `(rocq-mode-processing-face ((t (:background ,zenburn-red-4))))))
+  ; We need to explicitly call enable-theme after customizing faces; otherwise,
+  ; the changes are not applied
+  (enable-theme 'zenburn))
 
 ;; (use-package solarized-theme
 ;;   :config
