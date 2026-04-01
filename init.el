@@ -3,6 +3,28 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
 
+;;;; Straight bootstrapping code
+
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name
+        "straight/repos/straight.el/bootstrap.el"
+        (or (bound-and-true-p straight-base-dir)
+            user-emacs-directory)))
+      (bootstrap-version 7))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+(straight-use-package 'use-package)
+
+(setq straight-use-package-by-default t)
+
 ;;;; Keys, global configurations, etc.
 
 (use-package ws-butler
@@ -184,6 +206,8 @@ value of compile-command henceforth.
    ("C-M->" . mc/skip-to-next-like-this)
    ("C-c C-<" . mc/mark-all-like-this)))
 
+(use-package transient)
+
 (use-package helm
   :config
   (helm-mode 1)
@@ -215,6 +239,7 @@ value of compile-command henceforth.
     (call-process "xdg-open" nil 0 nil file)))
 
 (use-package dired
+  :straight nil
   :ensure nil
   :config
   ; Use neighboring dired window as default file destination when copying file.
@@ -224,11 +249,16 @@ value of compile-command henceforth.
 
 ;;;; * Agda
 
-(use-package agda2-mode)
+(load-file (let ((coding-system-for-read 'utf-8))
+                (shell-command-to-string "agda-mode locate")))
+
+(use-package agda2-mode
+  :straight nil)
 
 ;;;; * LilyPond
 
 (use-package lilypond-mode
+  :straight nil
   :config
   (custom-set-variables
    '(LilyPond-pdf-command "evince")))
@@ -247,6 +277,8 @@ value of compile-command henceforth.
 (global-set-key (kbd "C-c q") 'auto-fill-mode)
 
 ;;;; * TeX
+
+(use-package auctex)
 
 ; Allow moving to corresponding point in PDF with C-c C-v
 (setq TeX-source-correlate-mode t)
@@ -278,7 +310,7 @@ value of compile-command henceforth.
 
 ;;;; * Iris input mode
 
-(require 'math-symbol-lists)
+(use-package math-symbol-lists)
 
 (add-hook 'coq-mode-hook (lambda () (set-input-method "iris")))
 
@@ -355,6 +387,15 @@ value of compile-command henceforth.
 (add-hook 'org-shiftright-final-hook 'windmove-right)
 
 ;;;; * Proof General / Coq
+
+(use-package proof-general)
+
+(use-package rocq-mode
+  :straight nil
+  :commands rocq-mode
+  :hook
+  (rocq-mode . rocq-follow-viewport-mode)
+  (rocq-mode . rocq-auto-goals-at-point-mode))
 
 (defun set-proof-general-keys ()
   (local-set-key (kbd "C-c C-k") 'proof-goto-point))
@@ -450,3 +491,7 @@ value of compile-command henceforth.
 ;;;; * Shell-here
 
 (use-package shell-here)
+
+;;;; * Nix
+
+(use-package nix-mode)
