@@ -25,6 +25,11 @@
 
 (setq straight-use-package-by-default t)
 
+;;;; Load these packages early to prevent version mismatch
+
+(use-package project :ensure t)
+(use-package flymake :ensure t)
+
 ;;;; Keys, global configurations, etc.
 
 (use-package ws-butler
@@ -391,7 +396,7 @@ value of compile-command henceforth.
 (use-package proof-general)
 
 (use-package rocq-mode
-  :straight nil
+  :straight (rocq-mode :type git :repo "https://codeberg.org/jpoiret/rocq-mode.el.git")
   :commands rocq-mode
   :hook
   (rocq-mode . rocq-follow-viewport-mode)
