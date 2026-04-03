@@ -263,8 +263,10 @@ value of compile-command henceforth.
 ;;;; * LilyPond
 
 (use-package lilypond-mode
-  :straight nil
+  :straight (:host github :repo "emacsmirror/lilypond" :files ("elisp/*.el"))
   :config
+  ; Set up autoloads automatically, since they live in a nonstandard location
+  (load "lilypond-init")
   (custom-set-variables
    '(LilyPond-pdf-command "evince")))
 
