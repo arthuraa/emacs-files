@@ -258,7 +258,9 @@ value of compile-command henceforth.
                 (shell-command-to-string "agda-mode locate")))
 
 (use-package agda2-mode
-  :straight nil)
+  :straight (:host github
+                   :repo "agda/agda"
+                   :files ("src/data/emacs-mode/*.el")))
 
 ;;;; * LilyPond
 
