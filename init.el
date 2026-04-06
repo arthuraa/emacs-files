@@ -254,9 +254,6 @@ value of compile-command henceforth.
 
 ;;;; * Agda
 
-(load-file (let ((coding-system-for-read 'utf-8))
-                (shell-command-to-string "agda-mode locate")))
-
 (use-package agda2-mode
   :straight (:host github
                    :repo "agda/agda"
