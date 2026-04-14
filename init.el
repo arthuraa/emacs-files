@@ -292,10 +292,12 @@ value of compile-command henceforth.
 
 ;;;; * TeX
 
-(use-package auctex)
-
-; Allow moving to corresponding point in PDF with C-c C-v
-(setq TeX-source-correlate-mode t)
+(use-package auctex
+  :config
+  (setq TeX-parse-self t)
+  (setq TeX-auto-save t)
+  ; Allow moving to corresponding point in PDF with C-c C-v
+  (setq TeX-source-correlate-mode t))
 
 ;;;; * Haskell
 
