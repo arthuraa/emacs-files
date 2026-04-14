@@ -202,6 +202,10 @@ value of compile-command henceforth.
 ;;   :config
 ;;   (load-theme 'solarized-light-high-contrast t))
 
+;;;; Rainbow
+
+(use-package rainbow-mode)
+
 ;;;; * Multiple cursors
 
 (use-package multiple-cursors
@@ -229,6 +233,10 @@ value of compile-command henceforth.
 (use-package magit
   :bind
   (("C-c g" . magit-status)))
+
+(use-package markdown-mode)
+
+(use-package yaml-mode)
 
 ;;;; Ensure that dead keys work
 (require 'iso-transl)
