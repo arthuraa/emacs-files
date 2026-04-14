@@ -192,7 +192,7 @@ value of compile-command henceforth.
   (zenburn-with-color-variables
     (custom-theme-set-faces
       'zenburn
-      `(rocq-mode-last-goal-request ((t (:background ,zenburn-blue-5))))
+      `(rocq-mode-last-request ((t (:background ,zenburn-blue-5))))
       `(rocq-mode-processing-face ((t (:background ,zenburn-red-4))))))
   ; We need to explicitly call enable-theme after customizing faces; otherwise,
   ; the changes are not applied
@@ -407,8 +407,11 @@ value of compile-command henceforth.
 (use-package proof-general)
 
 (use-package rocq-mode
-  :straight (rocq-mode :type git :repo "https://codeberg.org/jpoiret/rocq-mode.el.git")
+  :straight (rocq-mode :type git :repo "https://codeberg.org/arthuraa/rocq-mode.el.git"
+                       :branch "experimental-ui")
   :commands rocq-mode
+  :config
+  (setq rocq-top-goal nil)
   :hook
   (rocq-mode . rocq-follow-viewport-mode)
   (rocq-mode . rocq-auto-goals-at-point-mode))
