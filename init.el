@@ -407,8 +407,8 @@ value of compile-command henceforth.
 (use-package proof-general)
 
 (use-package rocq-mode
-  :straight (rocq-mode :type git :repo "https://codeberg.org/arthuraa/rocq-mode.el.git"
-                       :branch "experimental-ui")
+  :straight (rocq-mode :type git
+                       :repo "https://codeberg.org/jpoiret/rocq-mode.el.git")
   :commands rocq-mode
   :config
   (setq rocq-top-goal nil)
