@@ -275,7 +275,7 @@ value of compile-command henceforth.
   ; Set up autoloads automatically, since they live in a nonstandard location
   (load "lilypond-init")
   (custom-set-variables
-   '(LilyPond-pdf-command "evince")))
+   '(lilypond-pdf-command "evince")))
 
 ;;;; * Text
 
