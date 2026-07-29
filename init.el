@@ -290,6 +290,10 @@ value of compile-command henceforth.
 (setq-default fill-column 80)
 (global-set-key (kbd "C-c q") 'auto-fill-mode)
 
+;;;; * Typst
+
+(use-package typst-ts-mode)
+
 ;;;; * TeX
 
 (use-package auctex
@@ -401,6 +405,14 @@ value of compile-command henceforth.
 (add-hook 'org-shiftleft-final-hook 'windmove-left)
 (add-hook 'org-shiftdown-final-hook 'windmove-down)
 (add-hook 'org-shiftright-final-hook 'windmove-right)
+
+;;;; * Lean4
+
+(use-package lean4-mode
+  :straight (lean4-mode
+             :type git
+             :repo "https://github.com/leanprover-community/lean4-mode.git"
+             :rev :last-release))
 
 ;;;; * Proof General / Coq
 
@@ -514,3 +526,7 @@ value of compile-command henceforth.
 ;;;; * Nix
 
 (use-package nix-mode)
+
+;;;; * Biblio
+
+(use-package biblio)
