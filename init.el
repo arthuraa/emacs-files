@@ -440,8 +440,7 @@ value of compile-command henceforth.
   :config
   (setq rocq-top-goal nil)
   :hook
-  (rocq-mode . rocq-follow-viewport-mode)
-  (rocq-mode . rocq-auto-goals-at-point-mode))
+  (rocq-mode . rocq-follow-viewport-mode))
 
 (defun set-proof-general-keys ()
   (local-set-key (kbd "C-c C-k") 'proof-goto-point))
