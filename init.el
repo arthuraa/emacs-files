@@ -439,8 +439,12 @@ value of compile-command henceforth.
   :commands rocq-mode
   :config
   (setq rocq-top-goal nil)
+  (setq rocq-mode-start-server nil)
   :hook
-  (rocq-mode . rocq-follow-viewport-mode))
+  (rocq-mode . rocq-follow-viewport-mode)
+  :bind (:map rocq-mode-map
+              ("C-c C-l" . eglot)
+              ("C-c C-k" . eglot-shutdown)))
 
 (defun set-proof-general-keys ()
   (local-set-key (kbd "C-c C-k") 'proof-goto-point))
