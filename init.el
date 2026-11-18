@@ -435,7 +435,7 @@ value of compile-command henceforth.
 
 (use-package rocq-mode
   :straight (rocq-mode :type git
-                       :repo "https://codeberg.org/jpoiret/rocq-mode.el.git")
+                       :repo "https://github.com/arthuraa/rocq-mode.el.git")
   :commands rocq-mode
   :config
   (setq rocq-top-goal nil)
