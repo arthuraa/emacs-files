@@ -440,6 +440,7 @@ value of compile-command henceforth.
   :config
   (setq rocq-top-goal nil)
   (setq rocq-mode-start-server nil)
+  (setq rocq-indent-proof-offset 0)
   :hook
   (rocq-mode . rocq-follow-viewport-mode)
   (rocq-mode . rocq-auto-goals-at-point-mode)
